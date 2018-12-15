@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{{ asset('admin/vendors/css/vendor.bundle.addons.css')}}">
   <!-- endinject -->
   <!-- plugin css for this page -->
+  <link rel="stylesheet" href="{{ asset('admin/vendors/iconfonts/font-awesome/css/font-awesome.css')}}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('admin/css/style.css')}}">
@@ -24,10 +25,10 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-        <a class="navbar-brand brand-logo" href="index.html">
+        <a class="navbar-brand brand-logo" href="home">
           <img src="{{ asset('admin/images/logo.svg')}}" alt="logo" />
         </a>
-        <a class="navbar-brand brand-logo-mini" href="index.html">
+        <a class="navbar-brand brand-logo-mini" href="home">
           <img src="{{ asset('admin/images/logo-mini.svg')}}" alt="logo" />
         </a>
       </div>
@@ -224,6 +225,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{{ route('categories.index') }}">
+              <i class="menu-icon fa fa-edit"></i>
+              <span class="menu-title">Manage Category Image</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#manage" aria-expanded="false" aria-controls="manage">
               <i class="menu-icon mdi mdi-wrench"></i>
               <span class="menu-title">Manage</span>
@@ -232,19 +239,19 @@
             <div class="collapse" id="manage">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ asset('admin/pages/ui-features/buttons.html')}}">
+                  <a class="nav-link" href="{{ route('students.index') }}">
                       <i class="menu-icon mdi mdi-check"></i>Murid</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ asset('admin/pages/ui-features/typography.html')}}">
+                  <a class="nav-link" href="{{ route('teachers.index') }}">
                     <i class="menu-icon mdi mdi-check"></i>Guru</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ asset('admin/pages/ui-features/buttons.html')}}">
+                  <a class="nav-link" href="{{ route('galleries.index')}}">
                     <i class="menu-icon mdi mdi-check"></i>Gallery</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ asset('admin/pages/ui-features/typography.html')}}">
+                  <a class="nav-link" href="{{ route('events.index') }}">
                     <i class="menu-icon mdi mdi-check"></i>Events</a>
                 </li>
               </ul>
@@ -328,6 +335,7 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
+  @yield('footer-scripts')
 
   <!-- plugins:js -->
   <script src="{{ asset('admin/vendors/js/vendor.bundle.base.js')}}"></script>
@@ -342,6 +350,12 @@
   <!-- Custom js for this page-->
   <script src="{{ asset('admin/js/dashboard.js')}}"></script>
   <!-- End custom js for this page-->
+  <script type="text/javascript">
+    $(document).on("click", '[data-toggle="lightbox"]', function(event) {
+  event.preventDefault();
+  $(this).ekkoLightbox();
+});
+  </script>
 </body>
 
 </html>

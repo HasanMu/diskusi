@@ -6,6 +6,67 @@
 	<title>SMK ASSALAAM || @yield('title')</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<link rel="stylesheet" media="all" href="css/style.css">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<style type="text/css">
+.img-responsive{
+	height: 300px;
+	width: 100%;
+}
+.gallery-title
+{
+    font-size: 36px;
+    color: #2e80b2;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 70px;
+}
+.gallery-title:after {
+    content: "";
+    position: absolute;
+    width: 7.5%;
+    left: 46.5%;
+    height: 45px;
+    border-bottom: 1px solid #5e5e5e;
+}
+.filter-button
+{
+    font-size: 18px;
+    border: 1px solid #2e80b2;
+    border-radius: 5px;
+    text-align: center;
+    color: #2e80b2;
+    margin-bottom: 30px;
+
+}
+.filter-button:hover
+{
+    font-size: 18px;
+    border: 1px solid #2e80b2;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #2e80b2;
+
+}
+.btn-default:active .filter-button:active
+{
+    background-color: #42B32F;
+    color: white;
+}
+
+.port-image
+{
+    width: 100%;
+}
+
+.gallery_product
+{
+    margin-bottom: 30px;
+}
+		
+
+	</style>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -19,12 +80,12 @@
 			<nav id="menu">
 				<ul>
 					<li><a href="/">Home</a></li>
-					<li><a href="/students">Students</a></li>
-					<li><a href="/events">Events</a></li>
+					<li><a href="/murid">Students</a></li>
+					<li><a href="/event">Events</a></li>
  				</ul>
 				<ul>
-					<li><a href="/teachers">Teachers</a></li>
-					<li class="current"><a href="/gallery">Gallery</a></li>
+					<li><a href="/guru">Teachers</a></li>
+					<li class="current"><a href="/galeri">Gallery</a></li>
 					<li><a href="#fancy" class="get-contact">Contact</a></li>
    				</ul>
 			</nav>
@@ -110,5 +171,35 @@
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
 	<script src="js/plugins.js"></script>
 	<script src="js/main.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+    $(".filter-button").click(function(){
+        var value = $(this).attr('data-filter');
+        
+        if(value == "all")
+        {
+            //$('.filter').removeClass('hidden');
+            $('.filter').show('1000');
+        }
+        else
+        {
+//            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
+//            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+            $(".filter").not('.'+value).hide('3000');
+            $('.filter').filter('.'+value).show('3000');
+            
+        }
+    });
+    
+    if ($(".filter-button").removeClass("active")) {
+$(this).removeClass("active");
+}
+$(this).addClass("active");
+
+});
+</script>
 </body>
 </html>

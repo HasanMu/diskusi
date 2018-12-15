@@ -52,47 +52,19 @@
 
 	<section class="events">
 		<div class="container">
-			<h2>Upcoming events</h2>
+			<h2>Events</h2>
+			@foreach($events as $data)
 			<article>
 				<div class="current-date">
-					<p>April</p>
-					<p class="date">15</p>
+					<p>{{$data->bulan}}</p>
+					<p class="date">{{$data->tanggal}}</p>
 				</div>
 				<div class="info">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-					<a class="more" href="#">Read more</a>
+					<p>{{str_limit($data->deskripsi, 150, '. . .')}}</p>
+					<a class="more" href="/event">Read more</a>
 				</div>
 			</article>
-			<article>
-				<div class="current-date">
-					<p>April</p>
-					<p class="date">17</p>
-				</div>
-				<div class="info">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-					<a class="more" href="#">Read more</a>
-				</div>
-			</article>
-			<article>
-				<div class="current-date">
-					<p>April</p>
-					<p class="date">25</p>
-				</div>
-				<div class="info">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-					<a class="more" href="#">Read more</a>
-				</div>
-			</article>
-			<article>
-				<div class="current-date">
-					<p>April</p>
-					<p class="date">29</p>
-				</div>
-				<div class="info">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.</p>
-					<a class="more" href="#">Read more</a>
-				</div>
-			</article>
+			@endforeach
 			<div class="btn-holder">
 				<a class="btn blue" href="#">See all upcoming events</a>
 			</div>

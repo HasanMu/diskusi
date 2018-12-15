@@ -6,10 +6,38 @@
 	<div class="main-panel">
         <div class="content-wrapper">
         	<center>
+            @if(session('status'))
+            <div style="position: relative; padding-left: 140px;">
+              <div class="row">
+                  <div class="col-md-10">
+                      <div class="alert alert-success">
+                        {{session('status')}}
+                      </div>
+                  </div>
+              </div>
+            </div>
+            @endif
         	<div class="col-lg-11 grid-margin stretch-card" style="text-align: left;">
               <div class="card">
                 <div class="card-body">
                   <h2>Data kelas</h2>
+                  <a href="{{route('class.create')}}" class="btn btn-outline-primary"> Tambah data </a>
+                  <p></p>
+                  <form action="{{route('class.index')}}">
+                  
+                  <div class="form-group">  
+                    <div class="input-group col-xs-10">
+                      <input 
+                        type="text"
+                        name="filter" 
+                        class="form-control"
+                        placeholder="Cari berdasarkan nama kelas">
+                      <span class="input-group-append">
+                        <button 
+                        class="file-upload-browse btn btn-info" 
+                        type="submit"><i class="fa fa-search"></i></button>
+                      </span>
+                    </form>
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <thead>
@@ -20,46 +48,27 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <?php $no = 0; ?>
+                        @foreach($kelas as $data)
+                        <?php $no++ ?>
                         <tr>
-                          <td>Jacob</td>
-                          <td>Photoshop</td>
-                          <td class="text-danger"> 28.76%
-                            <i class="mdi mdi-arrow-down"></i>
+                          <td>{{$no}}</td>
+                          <td>{{$data->nama}}</td>
+                          <td colspan="3">
+                          	<a 
+                              href="{{ route('class.edit', ['id' => $data->id]) }}"
+                              class="btn btn-outline-primary"> Edit </a>
+                          	<!-- <a href="" class="btn btn-outline-info"> Info </a> -->
+                          	<a href="{{ route('class.destroy', ['id' => $data->id]) }}" class="btn btn-outline-danger"> Delete </a>
                           </td>
                         </tr>
-                        <tr>
-                          <td>Messsy</td>
-                          <td>Flash</td>
-                          <td class="text-danger"> 21.06%
-                            <i class="mdi mdi-arrow-down"></i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>John</td>
-                          <td>Premier</td>
-                          <td class="text-danger"> 35.00%
-                            <i class="mdi mdi-arrow-down"></i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Peter</td>
-                          <td>After effects</td>
-                          <td class="text-success"> 82.00%
-                            <i class="mdi mdi-arrow-up"></i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Dave</td>
-                          <td>53275535</td>
-                          <td class="text-success"> 98.05%
-                            <i class="mdi mdi-arrow-up"></i>
-                          </td>
-                        </tr>
+                        @endforeach
                       </tbody>
                       <tfoot>
-		                <tr>
+		                <br>
+                    <tr>
 		                    <td colspan="10">
-		                        {{$user->links()}}
+		                        {{$kelas->appends(Request::all())->links()}}
 		                    </td>
 		                </tr>
 		            </tfoot>
@@ -68,6 +77,8 @@
                 </div>
               </div>
             </div>
+            </div>
+          </div>
             </center>
     </div>
 @endsection

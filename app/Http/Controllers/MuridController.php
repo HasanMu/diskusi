@@ -6,14 +6,33 @@ use Illuminate\Http\Request;
 
 class MuridController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $murid = \App\Murid::paginate(5);
+        $user = \App\User::all();
+        $filter = $request->get('filter');
+
+        if ($filter) {
+            $murid = \App\Murid::where('nama', 'LIKE', "%$filter%")->paginate(5);
+        }
+
+        return view('murid.index', compact('murid', 'user'));
     }
 
     /**
@@ -23,7 +42,10 @@ class MuridController extends Controller
      */
     public function create()
     {
-        //
+        $user = \App\User::all();
+        $murid = \App\Kelas::all();
+
+        return view('murid.create', compact('user', 'murid'));
     }
 
     /**
@@ -34,7 +56,18 @@ class MuridController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = \App\User::all();
+        $new_murid = new \App\Murid;
+
+        $new_murid->nis = $request->get('nis');
+        $new_murid->nama = $request->get('nama');
+        $new_murid->kelas_id = $request->get('kelas');
+        $new_murid->alamat = $request->get('alamat');
+        $new_murid->dob = $request->get('dob');
+        $new_murid->save();
+
+        return redirect()
+        ->route('students.index', compact('user'))->with('status', 'Data murid berhasil ditambahkan!');
     }
 
     /**
@@ -56,7 +89,12 @@ class MuridController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = \App\User::all();
+        $selectid = \App\Murid::findOrFail($id)->kelas_id;
+        $murid = \App\Murid::findOrFail($id);
+        $kelas = \App\Kelas::all();
+
+        return view('murid.edit', compact('murid', 'user', 'kelas', 'selectid'));
     }
 
     /**
@@ -68,7 +106,16 @@ class MuridController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $murid = \App\Murid::findOrFail($id);
+
+        $murid->nis = $request->get('nis');
+        $murid->nama = $request->get('nama');
+        $murid->kelas_id = $request->get('kelas');
+        $murid->alamat = $request->get('alamat');
+        $murid->dob = $request->get('dob');
+        $murid->save();
+
+        return redirect()->route('students.index')->with('status', 'Data murid berhasil diperbarui!');
     }
 
     /**
@@ -79,6 +126,9 @@ class MuridController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = \App\Murid::findOrFail($id);
+        $delete->delete();
+
+        return redirect()->route('students.index')->with('status', 'Data murid berhasil dihapus!');
     }
 }

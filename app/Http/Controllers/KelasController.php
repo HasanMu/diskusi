@@ -8,18 +8,34 @@ use Illuminate\Support\Facades\Gate;
 
 class KelasController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = \App\User::paginate(3)->all();
-        $kelas = \App\Kelas::paginate(3)->all();
+        $user = \App\User::all();
+        $kelas = \App\Kelas::paginate(5);
 
-        return view('kelas.index', compact('user'));
-        return view('kelas.index', compact('kelas'));
+        $filter = $request->get('filter');
+
+        if ($filter) {
+            $kelas = \App\Kelas::where('nama', 'LIKE', "%$filter%")->paginate(5);
+        }
+
+        return view('kelas.index', compact('user', 'kelas'));
     }
 
     /**
@@ -29,7 +45,9 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        $user = \App\User::all();
+
+        return view('kelas.create', compact('user'));
     }
 
     /**
@@ -40,7 +58,14 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = \App\User::all();
+        $new_kelas = new \App\Kelas;
+
+        $new_kelas->nama = $request->get('nama');
+        $new_kelas->save();
+
+        return redirect()
+        ->route('class.index')->with('status', 'Kelas baru telah ditambahkan!');
     }
 
     /**
@@ -62,7 +87,10 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = \App\User::all();
+        $kelas = \App\Kelas::findOrFail($id);
+
+        return view('kelas.edit', compact('user', 'kelas'));
     }
 
     /**
@@ -74,7 +102,14 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $kelas = \App\Kelas::findOrFail($id);
+        $user = \App\User::all();
+
+        $kelas->nama = $request->get('nama');
+        $kelas->save();
+
+        return redirect()
+        ->route('class.index')->with('status', 'Data kelas berhasil diperbarui!');
     }
 
     /**
@@ -85,6 +120,10 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = \App\Kelas::findOrFail($id);
+        $delete->delete();
+
+        return redirect()->route('class.index')->with('status', 'Data kelas berhasil dihapus!');
+    
     }
 }

@@ -45,8 +45,8 @@
                       <label>File upload</label>
                       <!-- <input type="file" name="img[]" class="file-upload-default"> -->
                       <br>
-                      @if($data->avatar)
-                      <img src="asset('storage/'.$data->avatar)">
+                      @if($data->avatars)
+                      <img src="{{asset('storage/'.$data->avatars)}}" height="100px">
                       @else
                       N/A
                       @endif
@@ -68,13 +68,13 @@
               <!-- Form Security -->
               <div class="card">
                 <div class="card-body">
-                  <h3>Security</h3>
-                  <br>
+                  <!-- <h3>Security</h3>
+                  <br> -->
                   <!-- <p class="card-description">
                     Basic form elements
                   </p> -->
 
-                  <form 
+                  <!-- <form 
                     class="forms-sample" 
                     method="post" 
                     enctype="multipart/form-data" 
@@ -101,7 +101,7 @@
                     </div>
                     <button type="submit" class="btn btn-success mr-2">Save changes</button>
                     <a href="{{ route('home.index') }}" class="btn btn-light">Cancel</a>
-                  </form>
+                  </form> -->
                 </div>
               </div>
             </div>

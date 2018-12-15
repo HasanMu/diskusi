@@ -19,12 +19,12 @@
 			<nav id="menu">
 				<ul>
 					<li><a href="/">Home</a></li>
-					<li><a href="/students">Students</a></li>
-					<li class="current"><a href="/events">Events</a></li>
+					<li><a href="/murid">Students</a></li>
+					<li class="current"><a href="/event">Events</a></li>
  				</ul>
 				<ul>
-					<li><a href="/teachers">Teachers</a></li>
-					<li><a href="/gallery">Gallery</a></li>
+					<li><a href="/guru">Teachers</a></li>
+					<li><a href="/galeri">Gallery</a></li>
 					<li><a href="#fancy" class="get-contact">Contact</a></li>
    				</ul>
 			</nav>
