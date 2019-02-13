@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<title>SMK ASSALAAM || @yield('title')</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-	<link rel="stylesheet" media="all" href="css/style.css">
+	<link rel="stylesheet" media="all" href="{{ asset('css/style.css')}}">
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -108,7 +108,7 @@
 
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
-	<script src="js/plugins.js"></script>
-	<script src="js/main.js"></script>
+	<script src="{{ asset('js/plugins.js')}}"></script>
+	<script src="{{ asset('js/main.js')}}"></script>
 </body>
 </html>

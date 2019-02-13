@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Gate;
+use Alert;
 
 class KelasController extends Controller
 {
@@ -65,7 +66,7 @@ class KelasController extends Controller
         $new_kelas->save();
 
         return redirect()
-        ->route('class.index')->with('status', 'Kelas baru telah ditambahkan!');
+        ->route('class.index')->with('success', 'Kelas baru telah ditambahkan!');
     }
 
     /**
@@ -109,7 +110,7 @@ class KelasController extends Controller
         $kelas->save();
 
         return redirect()
-        ->route('class.index')->with('status', 'Data kelas berhasil diperbarui!');
+        ->route('class.index')->with('success', 'Data kelas berhasil diperbarui!');
     }
 
     /**
@@ -123,7 +124,7 @@ class KelasController extends Controller
         $delete = \App\Kelas::findOrFail($id);
         $delete->delete();
 
-        return redirect()->route('class.index')->with('status', 'Data kelas berhasil dihapus!');
+        return redirect()->route('class.index')->with('success', 'Data kelas berhasil dihapus!');
     
     }
 }

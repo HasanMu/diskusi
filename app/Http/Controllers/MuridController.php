@@ -67,7 +67,7 @@ class MuridController extends Controller
         $new_murid->save();
 
         return redirect()
-        ->route('students.index', compact('user'))->with('status', 'Data murid berhasil ditambahkan!');
+        ->route('students.index', compact('user'))->with('success', 'Data murid berhasil ditambahkan!');
     }
 
     /**
@@ -115,7 +115,7 @@ class MuridController extends Controller
         $murid->dob = $request->get('dob');
         $murid->save();
 
-        return redirect()->route('students.index')->with('status', 'Data murid berhasil diperbarui!');
+        return redirect()->route('students.index')->with('success', 'Data murid berhasil diperbarui!');
     }
 
     /**
@@ -129,6 +129,6 @@ class MuridController extends Controller
         $delete = \App\Murid::findOrFail($id);
         $delete->delete();
 
-        return redirect()->route('students.index')->with('status', 'Data murid berhasil dihapus!');
+        return redirect()->route('students.index')->with('success', 'Data murid berhasil dihapus!');
     }
 }

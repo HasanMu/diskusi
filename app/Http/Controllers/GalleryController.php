@@ -79,7 +79,7 @@ class GalleryController extends Controller
 
         $new_image->save();
 
-        return redirect()->route('galleries.index')->with('status', 'Data gallery berhasil diperbarui!');
+        return redirect()->route('galleries.index')->with('success', 'Data gallery berhasil diperbarui!');
     }
 
     /**
@@ -135,7 +135,7 @@ class GalleryController extends Controller
         $gallery->cat_id = $request->get('kategori');
         $gallery->save();
 
-        return redirect()->route('galleries.index')->with('status', 'Data gallery berhasil diperbarui!');
+        return redirect()->route('galleries.index')->with('success', 'Data gallery berhasil diperbarui!');
     }
 
     /**
@@ -146,6 +146,9 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = \App\Gallery::findOrFail($id);
+        $delete->delete();
+
+        return redirect()->route('galleries.index')->with('success', 'Data gallery berhasil dihapus!');
     }
 }

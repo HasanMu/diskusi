@@ -9,22 +9,20 @@
 		<div class="container">
 
 			<div class="main-content">
-				<h1>Event yang akan datang</h1>
+				<h1>{{$event->nama}}</h1>
 				<section class="posts-con">
-					@foreach($events as $data)
 					<article>
 						<div class="current-date">
-							<p>{{$data->bulan}}</p>
-							<p class="date">{{$data->tanggal}}</p>
+							<p>{{$event->bulan}}</p>
+							<p class="date">{{$event->tanggal}}</p>
 						</div>
 						<div class="info">
-							<h3><a href="" name="nama" style="text-decoration: none; color: grey;">{{$data->nama}}</a></h3>
-							<p class="info-line"><span class="time">{{$data->waktu}}</span><span class="place">{{$data->tempat}}</span></p>
-							<p>{{str_limit($data->deskripsi, 300, '. . .')}}</p>
-							<a href="{{route('detailevent', $data->id)}}"> Baca selengkapnya..</a>
+							<h3><a href="" style="text-decoration: none; color: grey;"></a></h3>
+							<p class="info-line"><span class="time">{{$event->waktu}}</span><span class="place">{{$event->tempat}}</span></p>
+							<p>{{$event->deskripsi}}</p>
+							
 						</div>
 					</article>
-					@endforeach
 				</section>
 			</div>
 			

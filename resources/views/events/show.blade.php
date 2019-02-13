@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title') Show @endsection
+@section('title') Info @endsection
 
 @section('content')
 

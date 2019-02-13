@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title') Create @endsection
+@section('title') Edit @endsection
 
 @section('content')
 	<div class="main-panel">
@@ -21,7 +21,7 @@
               <!-- Form Edit Profile -->
               <div class="card">
                 <div class="card-body">
-                  <h3>Tambah data kelas</h3>
+                  <h3>Edit data deskripsi</h3>
                   <br>
                   <!-- <p class="card-description">
                     Basic form elements
@@ -29,15 +29,21 @@
                     <form 
                       class="forms-sample" 
                       method="post" 
-                      action="{{route('class.store')}}">
+                      action="{{route('desc.update', ['id' => $desc->id])}}">
                       @csrf
+
+                      <input type="hidden" name="_method" value="PUT">
                       
                         <div class="form-group">
-                          <label for="exampleInputName1">Nama kelas</label>
-                          <input name="nama" type="text" class="form-control" id="exampleInputName1" placeholder="X, XII RPL, TSM, TKR 1, 2, 3">
+                          <label for="exampleInputName1">Judul</label>
+                          <input name="judul" type="text" class="form-control" id="exampleInputName1" placeholder="Nama deskripsi" value="{{$desc->judul}}">
                         </div>
-                      <button type="submit" class="btn btn-success mr-2">Tambah data</button>
-                      <a href="{{route('class.index')}}" class="btn btn-light">Kembali</a>
+                        <div class="form-group">
+                          <label for="exampleInputName1">Deskripsi</label>
+                          <textarea name="desc" type="text" rows="5" class="form-control" id="exampleInputName1" placeholder="Deskripsi . . .">{{$desc->deskripsi}}</textarea>
+                        </div>
+                      <button type="submit" class="btn btn-success mr-2">Edit data</button>
+                      <a href="{{route('desc.index')}}" class="btn btn-light">Kembali</a>
 
                     </form>
                     </div>

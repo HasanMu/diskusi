@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ContactController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,21 +21,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $user = \App\User::all();
-        $category = \App\Category::all();
-        $category = \App\Category::paginate(5);
+        $contact = \App\Contact::all();
 
-        $filter = $request->get('filter');
-
-        if ($filter) {
-            $category = \App\Category::where('nama', 'LIKE', "%$filter%")->paginate(5);
-        }
-
-        return view('gallery.category.index', compact('user', 'category'));
+        return view('contact.index', compact('user', 'contact'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -45,7 +37,7 @@ class CategoryController extends Controller
     {
         $user = \App\User::all();
 
-        return view('gallery.category.create', compact('user'));
+        return view('contact.create', compact('user'));
     }
 
     /**
@@ -56,15 +48,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $user = \App\User::all();
-        $new_cat = new \App\Category;
+        $new_contact = new \App\Contact;
 
-        $new_cat->nama = $request->get('nama');
-        $new_cat->save();
+        $new_contact->tempat = $request->get('tempat');
+        $new_contact->email = $request->get('email');
+        $new_contact->nohp = $request->get('nohp');
+        $new_contact->facebook = $request->get('facebook');
+        $new_contact->google = $request->get('google');
+        $new_contact->twitter = $request->get('twitter');
+        $new_contact->pinterest = $request->get('pinterest');
+        $new_contact->save();
 
-        return redirect()
-        ->route('categories.index', compact('user'))->with('success', 'Data kategori berhasil ditambahkan!');
-
+        return redirect()->route('contact.index')->with('success', 'Data contact berhasil ditambah!');
     }
 
     /**
@@ -87,9 +82,9 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $user = \App\User::all();
-        $category = \App\Category::findOrFail($id);
+        $data = \App\Contact::findOrFail($id);
 
-        return view('gallery.category.edit', compact('category', 'user'));
+        return view('contact.edit', compact('user', 'data'));
     }
 
     /**
@@ -101,12 +96,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cat = \App\Category::findOrFail($id);
+        $contact = \App\Contact::findOrFail($id);
 
-        $cat->nama = $request->get('nama');
-        $cat->save();
+        $contact->tempat = $request->get('tempat');
+        $contact->email = $request->get('email');
+        $contact->nohp = $request->get('nohp');
+        $contact->facebook = $request->get('facebook');
+        $contact->google = $request->get('google');
+        $contact->twitter = $request->get('twitter');
+        $contact->pinterest = $request->get('pinterest');
+        $contact->save();
 
-        return redirect()->route('categories.index')->with('success', 'Data kategori berhasil diperbarui!');
+        return redirect()->route('contact.index')->with('success', 'Data contact berhasil diperbarui!');
+
     }
 
     /**
@@ -117,10 +119,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $delete = \App\Category::findOrFail($id);
-
+        $delete = \App\Contact::findOrFail($id);
         $delete->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Data alumni berhasil dihapus!');
+        return redirect()->route('contact.index')->with('success', 'Data contact berhasil dihapus!!');
     }
 }

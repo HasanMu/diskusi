@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class DeskripsiController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,19 +21,12 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $user = \App\User::all();
-        $category = \App\Category::all();
-        $category = \App\Category::paginate(5);
+        $desc = \App\Deskripsi::all();
 
-        $filter = $request->get('filter');
-
-        if ($filter) {
-            $category = \App\Category::where('nama', 'LIKE', "%$filter%")->paginate(5);
-        }
-
-        return view('gallery.category.index', compact('user', 'category'));
+        return view('deskripsi.index', compact('user', 'desc'));
     }
 
     /**
@@ -45,7 +38,7 @@ class CategoryController extends Controller
     {
         $user = \App\User::all();
 
-        return view('gallery.category.create', compact('user'));
+        return view('deskripsi.create', compact('user'));
     }
 
     /**
@@ -56,15 +49,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $user = \App\User::all();
-        $new_cat = new \App\Category;
+        $new_desc = new \App\Deskripsi;
 
-        $new_cat->nama = $request->get('nama');
-        $new_cat->save();
+        $new_desc->judul = $request->get('judul');
+        $new_desc->deskripsi = $request->get('desc');
+        $new_desc->save();
 
-        return redirect()
-        ->route('categories.index', compact('user'))->with('success', 'Data kategori berhasil ditambahkan!');
-
+        return redirect()->route('desc.index')->with('success', 'Data deskripsi berhasil ditambahkan!');
     }
 
     /**
@@ -86,10 +77,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $desc = \App\Deskripsi::findOrFail($id);
         $user = \App\User::all();
-        $category = \App\Category::findOrFail($id);
 
-        return view('gallery.category.edit', compact('category', 'user'));
+        return view('deskripsi.edit', compact('user', 'desc'));
+
     }
 
     /**
@@ -101,12 +93,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cat = \App\Category::findOrFail($id);
+        $desc = \App\Deskripsi::findOrFail($id);
 
-        $cat->nama = $request->get('nama');
-        $cat->save();
+        $desc->judul = $request->get('judul');
+        $desc->deskripsi = $request->get('desc');
+        $desc->save();
 
-        return redirect()->route('categories.index')->with('success', 'Data kategori berhasil diperbarui!');
+        return redirect()->route('desc.index')->with('success', 'Data deskripsi berhasil diperbarui!');
+
     }
 
     /**
@@ -117,10 +111,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $delete = \App\Category::findOrFail($id);
-
+        $delete = \App\Deskripsi::findOrFail($id);
         $delete->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Data alumni berhasil dihapus!');
+        return redirect()->route('desc.index')->with('success', 'Data deskripsi berhasil dihapus!');
     }
 }

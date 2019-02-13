@@ -10,8 +10,11 @@ class FrontendController extends Controller
     public function index()
     {
         $events = \App\Events::paginate(4);
+        $alumni = \App\Alumni::paginate(2);
+        $contact = \App\Contact::paginate(1);
+        $desc = \App\Deskripsi::paginate(2);
 
-    	return view('guest.index', compact('events'));
+    	return view('guest.index', compact('events', 'alumni', 'contact', 'desc'));
     }
 
     public function murid(Request $request)
@@ -62,5 +65,13 @@ class FrontendController extends Controller
         }
 
         return view('guest.gallery', compact('galeri', 'cat'));
+    }
+
+    public function detailEvent(Request $request, $id)
+    {
+        $event = \App\Events::findOrFail($id);
+        $galeri = \App\Gallery::all();
+
+        return view('guest.detail-event', compact('event', 'galeri'));
     }
 }

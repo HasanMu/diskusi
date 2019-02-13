@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Alert;
 
 class GuruController extends Controller
 {
@@ -65,7 +66,7 @@ class GuruController extends Controller
         $new_guru->save();
 
         return redirect()
-        ->route('teachers.index', compact('user'))->with('status', 'Data guru berhasil ditambahkan!');
+        ->route('teachers.index', compact('user'))->with('success', 'Data guru berhasil ditambahkan!');
     }
 
     /**
@@ -115,7 +116,7 @@ class GuruController extends Controller
         $guru->save();
 
         return redirect()
-        ->route('teachers.index', compact('user'))->with('status', 'Data guru berhasil diperbarui!');
+        ->route('teachers.index', compact('user'))->with('success', 'Data guru berhasil diperbarui!');
     }
 
     /**
@@ -126,6 +127,9 @@ class GuruController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = \App\Guru::findOrFail($id);
+        $delete->delete();
+
+        return redirect()->route('teachers.index')->with('success', 'Data guru berhasil dihapus!');
     }
 }

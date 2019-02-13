@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="{{ asset('admin/css/style.css')}}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png')}}" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 </head>
 
 <body>
@@ -266,16 +267,16 @@
             <div class="collapse" id="Articles">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ asset('admin/pages/ui-features/buttons.html')}}">
-                      <i class="menu-icon mdi mdi-check"></i>Deskripsi</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ asset('admin/pages/ui-features/typography.html')}}">
+                  <a class="nav-link" href="{{ route('alumni.index')}}">
                     <i class="menu-icon mdi mdi-check"></i>Alumni</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ asset('admin/pages/ui-features/buttons.html')}}">
+                  <a class="nav-link" href="{{ route('contact.index')}}">
                     <i class="menu-icon mdi mdi-check"></i>Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('desc.index')}}">
+                    <i class="menu-icon mdi mdi-check"></i>Deskripsi</a>
                 </li>
               </ul>
             </div>
@@ -314,8 +315,34 @@
           </li>
         </ul>
       </nav>
+
+  <script src="js/sweetalert.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       
       @yield('content')
+      
+      <!-- Modal -->
+      <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                Add rows here
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->

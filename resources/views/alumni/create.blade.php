@@ -21,20 +21,33 @@
               <!-- Form Edit Profile -->
               <div class="card">
                 <div class="card-body">
-                  <h3>Tambah data kelas</h3>
+                  <h3>Tambah data alumni</h3>
                   <br>
                   <!-- <p class="card-description">
                     Basic form elements
                   </p> -->
                     <form 
                       class="forms-sample" 
-                      method="post" 
-                      action="{{route('class.store')}}">
+                      method="post"
+                      enctype="multipart/form-data" 
+                      action="{{route('alumni.store')}}">
                       @csrf
                       
                         <div class="form-group">
-                          <label for="exampleInputName1">Nama kelas</label>
-                          <input name="nama" type="text" class="form-control" id="exampleInputName1" placeholder="X, XII RPL, TSM, TKR 1, 2, 3">
+                          <label for="exampleInputName1">Nama</label>
+                          <input name="nama" type="text" class="form-control" id="exampleInputName1" placeholder="Namaa lengkap">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputName1">foto</label>
+                          <input name="foto" type="file" class="form-control" id="exampleInputName1" placeholder="">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputName1">Pekerjaan</label>
+                          <input name="pekerjaan" type="text" class="form-control" id="exampleInputName1" placeholder="Pekerjaan">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputName1">Deskripsi</label>
+                          <textarea rows="5" name="deskripsi" class="form-control" id="exampleInputName1" placeholder="Deskripsi"></textarea>
                         </div>
                       <button type="submit" class="btn btn-success mr-2">Tambah data</button>
                       <a href="{{route('class.index')}}" class="btn btn-light">Kembali</a>

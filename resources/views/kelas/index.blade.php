@@ -6,17 +6,7 @@
 	<div class="main-panel">
         <div class="content-wrapper">
         	<center>
-            @if(session('status'))
-            <div style="position: relative; padding-left: 140px;">
-              <div class="row">
-                  <div class="col-md-10">
-                      <div class="alert alert-success">
-                        {{session('status')}}
-                      </div>
-                  </div>
-              </div>
-            </div>
-            @endif
+            @include('sweet::alert')
         	<div class="col-lg-11 grid-margin stretch-card" style="text-align: left;">
               <div class="card">
                 <div class="card-body">
@@ -51,6 +41,9 @@
                         <?php $no = 0; ?>
                         @foreach($kelas as $data)
                         <?php $no++ ?>
+                        <form action="{{ route('class.destroy', ['id' => $data->id]) }}" method="post">
+                          @method('delete')
+                          @csrf
                         <tr>
                           <td>{{$no}}</td>
                           <td>{{$data->nama}}</td>
@@ -59,9 +52,10 @@
                               href="{{ route('class.edit', ['id' => $data->id]) }}"
                               class="btn btn-outline-primary"> Edit </a>
                           	<!-- <a href="" class="btn btn-outline-info"> Info </a> -->
-                          	<a href="{{ route('class.destroy', ['id' => $data->id]) }}" class="btn btn-outline-danger"> Delete </a>
+                          	<button type="submit" class="btn btn-outline-danger"  onclick="return confirm('Apakah anda yakin untuk menghapus data ini?')">Delete</button>
                           </td>
                         </tr>
+                        </form>
                         @endforeach
                       </tbody>
                       <tfoot>

@@ -32,8 +32,16 @@ Route::resource('/categories', 'CategoryController');
 
 Route::resource('/teachers', 'GuruController');
 
+Route::resource('/alumni', 'AlumniController');
+
+Route::resource('/contact', 'ContactController');
+
+Route::resource('/desc', 'DeskripsiController');
+
+
 Route::get('/', 'FrontendController@index')->name('guest.index');
 Route::get('/murid', 'FrontendController@murid');
 Route::get('/guru', 'FrontendController@guru');
 Route::get('/event', 'FrontendController@event');
+Route::get('/event/{event}', 'FrontendController@detailEvent')->name('detailevent');
 Route::get('/galeri', 'FrontendController@galeri');

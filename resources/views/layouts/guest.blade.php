@@ -50,7 +50,7 @@
 				<div class="container">
 					<div class="info">
 						<h2>Kami ada di <br><span>SMK ASSALAAM BANDUNG</span></h2>
-						<a href="#">Check out our new programs</a>
+						<a href="https://www.smkassalaambandung.sch.id">Lihat situs resmi SMK ASSALAAM BANDUNG</a>
 					</div>
 				</div>
 				<!-- / content -->
@@ -65,12 +65,13 @@
 	<footer id="footer">
 		<div class="container">
 			<section>
+				@foreach($contact as $data)
 				<article class="col-1">
 					<h3>Contact</h3>
 					<ul>
-						<li class="address"><a href="#">Jl. Situtarate - terusan cibaduyut,<br>Kab. Bandung - Jawa barat</a></li>
-						<li class="mail"><a href="#">info@smkassalaambandung.sch.id</a></li>
-						<li class="phone last"><a href="#">022 5420 220</a></li>
+						<li class="address"><a href="#">{{$data->tempat}}</a></li>
+						<li class="mail"><a href="#">{{$data->email}}</a></li>
+						<li class="phone last"><a href="#">{{$data->nohp}}</a></li>
 					</ul>
 				</article>
 				<article class="col-2">
@@ -100,13 +101,13 @@
 					<h3>Social media</h3>
 					<p>Temporibus autem quibusdam et aut debitis aut rerum necessitatibus saepe.</p>
 					<ul>
-						<li class="facebook"><a href="#">Facebook</a></li>
-						<li class="google-plus"><a href="#">Google+</a></li>
-						<li class="twitter"><a href="#">Twitter</a></li>
-						<li class="pinterest"><a href="#">Pinterest</a></li>
+						<li class="facebook"><a href="{{$data->facebook}}">Facebook</a></li>
+						<li class="google-plus"><a href="{{$data->google}}">Google+</a></li>
+						<li class="twitter"><a href="{{$data->twitter}}">Twitter</a></li>
+						<li class="pinterest"><a href="{{$data->pinterest}}">Pinterest</a></li>
 					</ul>
 				</article>
-				
+				@endforeach
 			</section>
 			<p class="copy">Copyright 2014 Harrison High School. Designed by <a href="http://www.vandelaydesign.com/" title="Designed by Vandelay Design" target="_blank">Vandelay Design</a>. All rights reserved.</p>
 		</div>

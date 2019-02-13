@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 
-@section('title') Kelas @endsection
+@section('title') Edit @endsection
 
 @section('content')
 	<div class="main-panel">

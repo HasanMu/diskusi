@@ -60,7 +60,7 @@ class EventsController extends Controller
 
         $new_event->save();
 
-        return redirect()->route('events.index')->with('status', 'Data events berhasil ditambahkan!');
+        return redirect()->route('events.index')->with('success', 'Data events berhasil ditambahkan!');
     }
 
     /**
@@ -111,7 +111,7 @@ class EventsController extends Controller
 
         $events->save();
 
-        return redirect()->route('events.index')->with('status', 'Data events berhasil diperbarui!');
+        return redirect()->route('events.index')->with('success', 'Data events berhasil diperbarui!');
 
     }
 
@@ -123,6 +123,9 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = \App\Events::findOrFail($id);
+        $delete->delete();
+
+        return redirect()->route('events.index')->with('success', 'Data events berhasil dihapus!');
     }
 }

@@ -19,7 +19,7 @@
         </div>
         <br/>
         	@foreach($galeri as $data)
-        	<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter {{$data->cat_id}}">
+        	<div class="gallery_product col-lg-4 col-md-2 col-sm-2 col-xs-2 filter {{$data->cat_id}}">
                 <img src="{{'storage/'.$data->nama_foto}}" class="img-responsive">
             </div>
             @endforeach
